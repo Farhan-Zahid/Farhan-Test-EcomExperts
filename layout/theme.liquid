@@ -331,8 +331,25 @@
       };
     </script>
 
+
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+  <script>
+  const selectElement = document.querySelector('.slct--new');
+  const labelColorElements = document.querySelectorAll('.label--Size');
+  const submitButton = document.querySelector('.product-form__submit');
+   selectElement.addEventListener('change', function() {
+      // Get the selected value
+      const selectedValue = selectElement.value;
+      labelColorElements.forEach(labelElement =>{
+const dataVal= labelElement.getAttribute('data-val');
+if(dataVal === selectedValue){
+  labelElement.click();
+}
+      });
+    });
+  </script>
+  
   </body>
 </html>
