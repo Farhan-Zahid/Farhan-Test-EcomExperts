@@ -40,7 +40,9 @@
               form="{{ product_form_id }}"
             >
               {% for value in option.values %}
+              <option value="{{value | escape}}"
               {{- value -}}
+              </option>
               {% endfor %}
             </select>
             {%endif%}
