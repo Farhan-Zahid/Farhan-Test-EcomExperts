@@ -378,7 +378,46 @@ if (selectedValue === 'Unselected') {
     });
 
     </script>
-    
+    </script>
+    <!-- js for show only same color images -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var colorCheckedElement = document.querySelector(".color-checked");
+          colorCheckedElement.classList.add('swatch-border');
+            var dataVal = colorCheckedElement.getAttribute("data-val").toLowerCase();
+            var thumbnailItems = document.querySelectorAll(".thumbnail-custom");
+            thumbnailItems.forEach(function (item) {
+            var dataAlt = item.getAttribute("data-alt").toLowerCase();
+            if (dataAlt === dataVal) {
+            item.classList.remove("hidden");
+            }
+            }); 
+            });
+    </script>
+    <script>
+      const colorLabels = document.querySelectorAll('.label--Color');
+      var thumbnailItems = document.querySelectorAll(".thumbnail-custom");
+      colorLabels.forEach(label => {
+      label.addEventListener('click', () => {
+      colorLabels.forEach(otherLabel => {
+      otherLabel.classList.remove('swatch-border');
+      });
+    // Add the "swatch-border" class to the clicked element
+      label.classList.add('swatch-border');
+    // Retrieve the value of the "data-val" attribute
+      const dataVal = label.getAttribute('data-val').toLowerCase();
+      thumbnailItems.forEach(function (item) {
+            var dataAlt = item.getAttribute("data-alt").toLowerCase();
+            if (dataAlt === dataVal) {
+            item.classList.remove("hidden");
+            }
+      else{
+        item.classList.add("hidden");
+      }
+            }); 
+  });
+});
+    </script>
 
   
   </body>
