@@ -363,7 +363,22 @@
         sizeMessage.style.display = 'none';
        }
     });
+
+document.addEventListener('DOMContentLoaded',function(){
+if (selectedValue === 'Unselected') {
+    // Add the class 'cart-disabled' to the submit button
+    submitButton.classList.add('cart-disabled');
+    sizeMessage.style.display = 'block';
+  } else {
+    // Remove the class 'cart-disabled' from the submit button
+    submitButton.classList.remove('cart-disabled');
+        sizeMessage.style.display = 'none';
+       }
+    });
+
     </script>
+    
+
   
   </body>
 </html>
