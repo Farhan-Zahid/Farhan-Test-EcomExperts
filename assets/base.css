@@ -3514,5 +3514,8 @@ details-disclosure > details {
 
 /* new css here */
 variant-selects{
-  display:none;
+  display:none!important;
+}
+.slct--new{
+  border: 2px solid;
 }
