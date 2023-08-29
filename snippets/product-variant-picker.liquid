@@ -31,6 +31,19 @@
         {{ product.variants | json }}
       </script>
     </variant-radios>
+    {%- for option in product.options_with_values -%}
+        {% if option.name == 'Size' %}
+          <select
+              id="Option-{{ section.id }}-{{ forloop.index0 }}"
+              class="select__select slct--new"
+              name="options[{{ option.name | escape }}]"
+              form="{{ product_form_id }}"
+            >
+              {% for value in option.value %}
+              {{- value -}}
+              {% endfor %}
+            </select>
+            {%endfor}
   {%- else -%}
     <variant-selects
       id="variant-selects-{{ section.id }}"
