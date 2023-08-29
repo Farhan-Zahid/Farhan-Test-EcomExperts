@@ -3524,3 +3524,10 @@ variant-selects{
   pointer-events: none;
   opacity: 0.5;
 }
+.label--Color{
+  width: 36px;
+    height: 36px;
+    border: unset;
+    text-indent: -99999px;
+    padding: unset;
+}
