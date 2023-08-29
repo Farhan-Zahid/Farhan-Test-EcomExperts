@@ -336,20 +336,34 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
   <script>
-  const selectElement = document.querySelector('.slct--new');
-  const labelColorElements = document.querySelectorAll('.label--Size');
-  const submitButton = document.querySelector('.product-form__submit');
-   selectElement.addEventListener('change', function() {
-      // Get the selected value
-      const selectedValue = selectElement.value;
-      labelColorElements.forEach(labelElement =>{
-const dataVal= labelElement.getAttribute('data-val');
-if(dataVal === selectedValue){
-  labelElement.click();
-} 
+    const selectElement = document.querySelector('.slct--new');
+    const labelColorElements = document.querySelectorAll('.label--Size');
+    const submitButton = document.querySelector('.product-form__submit');
+    const buyButton = document.querySelector('.shopify-payment-button__button');
+      
+    const sizeMessage = document.querySelector('.size-message');
+   // Add an event listener to the select element
+    selectElement.addEventListener('change', function() {
+    // Get the selected option's value
+    const selectedValue = selectElement.value;
+
+      labelColorElements.forEach(labelElement => {
+        const dataVal = labelElement.getAttribute('data-val');
+        if (dataVal === selectedValue) {
+          labelElement.click(); 
+        } 
       });
+    if (selectedValue === 'Unselected') {
+    // Add the class 'cart-disabled' to the submit button
+    submitButton.classList.add('cart-disabled');
+    sizeMessage.style.display = 'block';
+  } else {
+    // Remove the class 'cart-disabled' from the submit button
+    submitButton.classList.remove('cart-disabled');
+        sizeMessage.style.display = 'none';
+       }
     });
-  </script>
+    </script>
   
   </body>
 </html>
