@@ -3535,6 +3535,6 @@ variant-selects{
   box-shadow: inset 0px 0px 0px 3px rgb(255 251 255);
 }
 .item-disable{
-  pointer-events: :none;
+  pointer-events:none;
   opacity: 0.5;
 }
