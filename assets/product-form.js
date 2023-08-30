@@ -46,7 +46,7 @@ if (!customElements.get('product-form')) {
           .then((response) => {
 var variant_color = document.querySelector('.var--Color .var_active').getAttribute('data-val');
 var variant_size = document.querySelector('.var--Size .var_active').getAttribute('data-val');
-var value_additional = this.querySelector('.selected-sspid').value;
+var value_additional = document.querySelector('.selected-sspid').value;
 console.log(value_additional);
 if (variant_color === 'Black' && variant_size === 'Medium') {
   fetch('/cart/add', {headers: {
