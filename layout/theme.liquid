@@ -419,6 +419,35 @@ if (selectedValue === 'Unselected') {
 });
     </script>
 
-  
+  <!-- add winter jacket as bundle -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+  const productForm = document.querySelector('.product-form');
+
+  // Add an event listener to the form's submit event
+  productForm.addEventListener('submit', function(event) {
+    const productInfo = document.querySelector('.bundle--item');
+    const var_id = productInfo.getAttribute('var_val');
+    event.preventDefault();
+    
+    setTimeout(function() {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/cart/add.js', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+        console.log('success!');
+          } else {
+            console.error('Error adding product to cart');
+          }
+        }
+      };
+      const data = `id=${var_id}&quantity=1`;
+      xhr.send(data);
+    }, 200);
+  });
+});
+    </script>
   </body>
 </html>
