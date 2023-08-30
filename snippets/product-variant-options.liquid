@@ -59,7 +59,7 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" class="{% if option.name == 'Size' %}hidden{% endif %} label--{{ option.name }}{% if option.selected_value == value %} color-checked{% endif %}" data-val="{{ value }}" style="background:{{ value }}">
+    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" class="{% if option.name == 'Size' %}hidden{% endif %} label--{{ option.name }}{% if option.selected_value == value %} color-checked var_active{% endif %}" data-val="{{ value }}" style="background:{{ value }}">
       {{ value -}}
       <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
     </label>

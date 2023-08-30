@@ -351,7 +351,11 @@
         const dataVal = labelElement.getAttribute('data-val');
         if (dataVal === selectedValue) {
           labelElement.click(); 
+          labelElement.classList.add('var_active'); 
         } 
+        else{
+          labelElement.classList.remove('var_active'); 
+        }
       });
     if (selectedValue === 'Unselected') {
     // Add the class 'cart-disabled' to the submit button
@@ -401,9 +405,11 @@ if (selectedValue === 'Unselected') {
       label.addEventListener('click', () => {
       colorLabels.forEach(otherLabel => {
       otherLabel.classList.remove('swatch-border');
+      otherLabel.classList.remove('var_active');
       });
     // Add the "swatch-border" class to the clicked element
       label.classList.add('swatch-border');
+      label.classList.add('var_active');
     // Retrieve the value of the "data-val" attribute
       const dataVal = label.getAttribute('data-val').toLowerCase();
       thumbnailItems.forEach(function (item) {
@@ -419,35 +425,6 @@ if (selectedValue === 'Unselected') {
 });
     </script>
 
-  <!-- add winter jacket as bundle -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-  const productForm = document.querySelector('.product-form');
-
-  // Add an event listener to the form's submit event
-  productForm.addEventListener('submit', function(event) {
-    const productInfo = document.querySelector('.bundle--item');
-    const var_id = productInfo.getAttribute('var_val');
-    event.preventDefault();
-    
-    setTimeout(function() {
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', '/cart/add.js', true);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-        console.log('success!');
-          } else {
-            console.error('Error adding product to cart');
-          }
-        }
-      };
-      const data = `id=${var_id}&quantity=1`;
-      xhr.send(data);
-    }, 200);
-  });
-});
-    </script>
+  
   </body>
 </html>

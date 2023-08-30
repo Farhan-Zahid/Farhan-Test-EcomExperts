@@ -423,9 +423,10 @@
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'buy_buttons' -%}
-            {% if product.handle == 'handbag' %}
-            <div class="bundle--item hidden" var_val="{{ bunle_pro.selected_or_first_available_variant.id }}"></div>
-            {% endif %}
+            {% assign bundle_pro = product.metafields.custom.bundled_product.value %}
+            <input type="hidden" value="{%if bundle_pro != blank%}{{ bundle_pro.selected_or_first_available_variant.id }}{% endif %}" class="selected-sspid">
+           
+            
               {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
