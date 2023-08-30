@@ -78,7 +78,7 @@
             <tbody>
              {% assign new_key= '' %}
               {%- for item in cart.items -%}
-             {% if item.produt.handle == 'dark-winter-jacket' %}
+             {% if item.product.handle == 'dark-winter-jacket' %}
              {% assign new_key= new_key | append: item.key %}
              {% endif %}
                 <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
