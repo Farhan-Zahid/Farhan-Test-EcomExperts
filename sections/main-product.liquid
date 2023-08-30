@@ -60,7 +60,7 @@
       onload="this.media='all'"
     >
   {%- endif -%}
-
+{% assign bunle_pro = section.settings.bundle_product %}
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
   <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
@@ -423,6 +423,10 @@
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'buy_buttons' -%}
+            {% assign bundle_pro = product.metafields.custom.bundled_product.value %}
+            <input type="hidden" value="{%if bundle_pro != blank%}{{ bundle_pro.selected_or_first_available_variant.id }}{% endif %}" class="selected-sspid">
+           
+            
               {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
@@ -2021,6 +2025,11 @@
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
     },
     {
+  "type": "product",
+  "id": "bundle_product",
+  "label": "Product"
+},
+{
       "type": "header",
       "content": "t:sections.main-product.settings.header.content",
       "info": "t:sections.main-product.settings.header.info"

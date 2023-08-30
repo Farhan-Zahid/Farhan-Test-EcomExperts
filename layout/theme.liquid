@@ -331,8 +331,100 @@
       };
     </script>
 
+
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+  <script>
+    const selectElement = document.querySelector('.slct--new');
+    const labelColorElements = document.querySelectorAll('.label--Size');
+    const submitButton = document.querySelector('.product-form__submit');
+    const buyButton = document.querySelector('.shopify-payment-button__button');
+      
+    const sizeMessage = document.querySelector('.size-message');
+   // Add an event listener to the select element
+    selectElement.addEventListener('change', function() {
+    // Get the selected option's value
+    const selectedValue = selectElement.value;
+
+      labelColorElements.forEach(labelElement => {
+        const dataVal = labelElement.getAttribute('data-val');
+        if (dataVal === selectedValue) {
+          labelElement.click(); 
+          labelElement.classList.add('var_active'); 
+        } 
+        else{
+          labelElement.classList.remove('var_active'); 
+        }
+      });
+    if (selectedValue === 'Unselected') {
+    // Add the class 'cart-disabled' to the submit button
+    submitButton.classList.add('cart-disabled');
+    sizeMessage.style.display = 'block';
+  } else {
+    // Remove the class 'cart-disabled' from the submit button
+    submitButton.classList.remove('cart-disabled');
+        sizeMessage.style.display = 'none';
+       }
+    });
+
+document.addEventListener('DOMContentLoaded',function(){
+  const selectedValue = selectElement.value;
+if (selectedValue === 'Unselected') {
+    // Add the class 'cart-disabled' to the submit button
+    submitButton.classList.add('cart-disabled');
+    sizeMessage.style.display = 'block';
+  } else {
+    // Remove the class 'cart-disabled' from the submit button
+    submitButton.classList.remove('cart-disabled');
+        sizeMessage.style.display = 'none';
+       }
+    });
+
+    </script>
+    </script>
+    <!-- js for show only same color images -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var colorCheckedElement = document.querySelector(".color-checked");
+          colorCheckedElement.classList.add('swatch-border');
+            var dataVal = colorCheckedElement.getAttribute("data-val").toLowerCase();
+            var thumbnailItems = document.querySelectorAll(".thumbnail-custom");
+            thumbnailItems.forEach(function (item) {
+            var dataAlt = item.getAttribute("data-alt").toLowerCase();
+            if (dataAlt === dataVal) {
+            item.classList.remove("hidden");
+            }
+            }); 
+            });
+    </script>
+    <script>
+      const colorLabels = document.querySelectorAll('.label--Color');
+      var thumbnailItems = document.querySelectorAll(".thumbnail-custom");
+      colorLabels.forEach(label => {
+      label.addEventListener('click', () => {
+      colorLabels.forEach(otherLabel => {
+      otherLabel.classList.remove('swatch-border');
+      otherLabel.classList.remove('var_active');
+      });
+    // Add the "swatch-border" class to the clicked element
+      label.classList.add('swatch-border');
+      label.classList.add('var_active');
+    // Retrieve the value of the "data-val" attribute
+      const dataVal = label.getAttribute('data-val').toLowerCase();
+      thumbnailItems.forEach(function (item) {
+            var dataAlt = item.getAttribute("data-alt").toLowerCase();
+            if (dataAlt === dataVal) {
+            item.classList.remove("hidden");
+            }
+      else{
+        item.classList.add("hidden");
+      }
+            }); 
+  });
+});
+    </script>
+
+  
   </body>
 </html>

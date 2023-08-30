@@ -3511,3 +3511,30 @@ details-disclosure > details {
     --border-offset: 0px; /* Prevent the border from growing on buttons when this effect is on. */
   }
 }
+
+/* new css here */
+variant-selects{
+  display:none!important;
+}
+.slct--new{
+  border: 2px solid;
+  margin-top:unset;
+}
+.cart-disabled{
+  pointer-events: none;
+  opacity: 0.5;
+}
+.label--Color{
+  width: 36px;
+    height: 36px;
+    border: unset;
+    text-indent: -99999px;
+    padding: unset!important;
+}
+.swatch-border{
+  box-shadow: inset 0px 0px 0px 3px rgb(255 251 255);
+}
+.item-disable{
+  pointer-events:none;
+  opacity: 0.5;
+}

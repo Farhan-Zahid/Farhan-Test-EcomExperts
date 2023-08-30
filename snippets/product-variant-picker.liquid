@@ -11,6 +11,7 @@
 {% endcomment %}
 {%- unless product.has_only_default_variant -%}
   {%- if block.settings.picker_type == 'button' -%}
+    {% assign opt_name = '' %}
     <variant-radios
       id="variant-radios-{{ section.id }}"
       class="no-js-hidden"
@@ -21,16 +22,41 @@
       {% endif %}
       {{ block.shopify_attributes }}
     >
+
       {%- for option in product.options_with_values -%}
-        <fieldset class="js product-form__input">
+         {% assign op_name = option.name %}
+        {% assign opt_name = opt_name | append:op_name %}
+        
+        <fieldset class="js product-form__input var--{{ option.name }}">
           <legend class="form__label">{{ option.name }}</legend>
           {% render 'product-variant-options', product: product, option: option, block: block %}
         </fieldset>
+        
       {%- endfor -%}
+   
+   
+   
+        
       <script type="application/json">
         {{ product.variants | json }}
       </script>
     </variant-radios>
+    {% for option in product.options_with_values %}
+      {% if option.name == 'Size' %}
+   <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                          class="select__select slct--new"
+                          name="options[{{ option.name | escape }}]"
+                          form="{{ product_form_id }}"
+                        >
+                          {%- for value in option.values -%}
+                            <option value="{{ value | escape }}">
+                              {{- value -}}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                       
+        {% endif %}
+      {% endfor %}
   {%- else -%}
     <variant-selects
       id="variant-selects-{{ section.id }}"
@@ -43,6 +69,7 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
+       
         <div class="product-form__input product-form__input--dropdown">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
