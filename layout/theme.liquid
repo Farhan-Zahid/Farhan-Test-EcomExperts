@@ -370,6 +370,7 @@
 
 document.addEventListener('DOMContentLoaded',function(){
   const selectedValue = selectElement.value;
+  const checkedCheckboxes = document.querySelectorAll(".var--Size input[type=radio]:checked");
 if (selectedValue === 'Unselected') {
     // Add the class 'cart-disabled' to the submit button
     submitButton.classList.add('cart-disabled');
